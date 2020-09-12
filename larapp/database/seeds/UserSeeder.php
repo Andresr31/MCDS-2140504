@@ -35,7 +35,8 @@ class UserSeeder extends Seeder
         $usr->created_at = now();
         $usr->save();
 
-
+        //Creación de Factory
+        factory(User::class, 10)->create();
 
     }
 }
