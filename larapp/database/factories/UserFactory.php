@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $gender = $faker->randomElement(['Male', 'Female']);
+    $gender = $faker->randomElement(['male', 'female']);
     return [
         'fullname' => $faker->name($gender),
         'email' => $faker->unique()->safeEmail,
