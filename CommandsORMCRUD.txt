@@ -1,0 +1,40 @@
+CREATE:
++++++++++++++++++++
+use App\User;
+$user = new User;
+$user->fullname = 'Liza Simpson';
+$user->email = 'liza@gmail.com';
+$user->phone = 3210989876;
+$user->birthdate = '1990-10-10';
+$user->gender = "Female";
+$user->address = 'Cll Siempreviva';
+$user->password = bcrypt('editor');
+$user->save();
+
+READ:
+++++++++++++++++++++
+use App\User;
+$users = User::all();
+$user = User::find(7);
+$users = User::find([1, 3, 5]);
+$user = User::findOrFail(200);
+$count = User::count();
+$max = User::all()->max('birthdate');
+$min = User::all()->min('birthdate');
+$users = User::all()->take(5);
+$users = User::where('active', 1)->get();
+$users = User::where('active', 1)->limit(2)->get();
+$users = User::where('role', 'Customer')->orderBy('birthdate', 'desc')->get();
+
+UPDATE:
+++++++++++++++++++++
+$user = User::find(13);
+$user->address = "Calle Siempre Viva";
+$user->role = "Editor";
+$user->save();
+
+DELETE:
+++++++++++++++++++++
+$user = User::find(13);
+$user->delete();
+User::destroy(13);
