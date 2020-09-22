@@ -57,11 +57,14 @@ Route::get('users', function () {
 
         }
 
-        dd($rs);
+        return view('users',['rs'=>$rs]);
 
-    return view('users',['users'=>$users]);
 });
 
 Route::get('users/{id}', function ($id) {
     dd(App\User::find($id));
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
