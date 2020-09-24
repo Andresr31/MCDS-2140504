@@ -25,9 +25,6 @@ Route::get('saludo', function () {
 
 Route::get('users', function () {
 
-    /// Considero que esto debería estar en un controlador, sin embargo,
-    /// por efectos practicos del ejefcicio propuesto, lo haré acá
-
     $users = App\User::all()->take(10);
 
     /// Forma de hacerlo solo con php
@@ -66,5 +63,12 @@ Route::get('users/{id}', function ($id) {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Example Route - Blade Activity
+Route::get('/examples', function () {
+    $users = App\User::all()->take(10);
+    $categories = App\Category::all()->take(0);
+    $games = App\Game::all();
+    return view('examples',['users'=>$users,'categories'=>$categories,'games'=>$games]);
+});
