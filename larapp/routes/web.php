@@ -72,3 +72,7 @@ Route::get('/examples', function () {
     $games = App\Game::all();
     return view('examples',['users'=>$users,'categories'=>$categories,'games'=>$games]);
 });
+
+
+// Middleware
+Route::get('locale/{locale}', 'LocaleController@index');
