@@ -25,5 +25,8 @@ return [
     'title-reset-password' => 'Reset Password',
     'btn-reset-password'   => 'Send Password Reset Link',
     // NavBar
-    'link-close' => 'Logout',
+    'link-dashboard' => 'Dashboard',
+    'link-close'     => 'Logout',
+    // Dashboard
+    'title-dashboard' => 'Dashboard',
 ];

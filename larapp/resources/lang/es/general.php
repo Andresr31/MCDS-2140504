@@ -25,5 +25,8 @@ return [
     'title-reset-password' => 'Restablecer Contraseña',
     'btn-reset-password'   => 'Enviar Enlace Restablecimiento Contraseña',
     // NavBar
-    'link-close' => 'Cerrar Sesión',
+    'link-dashboard' => 'Escritorio',
+    'link-close'     => 'Cerrar Sesión',
+    // Dashboard
+    'title-dashboard' => 'Escritorio',
 ];
