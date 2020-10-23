@@ -37,7 +37,27 @@
         @yield('content')
     </main>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/sweetalert2@9.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            @if (session('message'))
+                Swal.fire(
+                    'Felicitaciones',
+                    '{{ session('message') }}',
+                    'success'
+                );
+            @endif
+
+            $('#photo').change(function(event) {
+               let reader = new FileReader();
+               reader.onload = function(event) {
+                    $('#preview').attr('src', event.target.result);
+               }
+               reader.readAsDataURL(this.files[0]);
+            });
+        });
+    </script>
 </body>
 </html>
