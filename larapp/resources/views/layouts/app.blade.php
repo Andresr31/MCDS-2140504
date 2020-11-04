@@ -77,6 +77,14 @@
                }
                reader.readAsDataURL(this.files[0]);
             });
+
+            $('#image').change(function(event) {
+               let reader = new FileReader();
+               reader.onload = function(event) {
+                    $('#previewImage').attr('src', event.target.result);
+               }
+               reader.readAsDataURL(this.files[0]);
+            });
         });
     </script>
 </body>

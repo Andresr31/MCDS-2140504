@@ -8,23 +8,49 @@
                 <div class="card-header text-center">
                     <h4>
                         <i class="fa fa-clipboard-list"></i>
-                        @lang('general.title-dashboard') 
+                        @lang('general.title-dashboard')
                     </h4>
                 </div>
 
                 <div class="card-body row">
                     <div class="col-md-4 mt-5">
                         <div class="card">
-                                <img src="{{ asset('imgs/bg-users.svg') }}" width="240px" class="my-2 img-top-card">
-                                <div class="card-body">
-                                    <a href="{{ route('users.index') }}" class="btn btn-block btn-larapp">
-                                        <i class="fa fa-users"></i>
-                                        Módulo Usuarios
-                                    </a>
-                                </div>
+                            <img src="{{ asset('imgs/bg-users.svg') }}" width="240px" class="my-2 img-top-card img-fluid">
+                            <div class="card-body">
+                                <a href="{{ route('users.index') }}" class="btn btn-block btn-larapp">
+                                    <i class="fa fa-users"></i>
+                                    Módulo Usuarios
+                                </a>
                             </div>
-                            {{--  --}}
                         </div>
+                        {{-- --}}
+                    </div>
+
+                    <div class="col-md-4 mt-5">
+                        <div class="card">
+                            <img src="{{ asset('imgs/bg-categories.svg') }}" width="240px" class="my-2 img-top-card img-fluid">
+                            <div class="card-body">
+                                <a href="{{ route('categories.index') }}" class="btn btn-block btn-larapp">
+                                    <i class="fa fa-dice-d20"></i>
+                                    Módulo Categorias
+                                </a>
+                            </div>
+                        </div>
+                        {{-- --}}
+                    </div>
+
+                    <div class="col-md-4 mt-5">
+                        <div class="card">
+                            <img src="{{ asset('imgs/bg-games.svg') }}" width="240px" class="my-2 img-top-card img-fluid">
+                            <div class="card-body">
+                                <a href="{{ route('users.index') }}" class="btn btn-block btn-larapp">
+                                    <i class="fa fa-gamepad"></i>
+                                    Módulo Juegos
+                                </a>
+                            </div>
+                        </div>
+                        {{-- --}}
+                    </div>
                 </div>
             </div>
         </div>
