@@ -14,6 +14,11 @@
 				<i class="fa fa-file-pdf"></i>
 				Exportar PDF 
 			</a>
+			<a href="{{ url('generate/excel/users') }}" class="btn btn-larapp"> 
+				<i class="fa fa-file-excel"></i>
+				Exportar EXCEL
+			</a>
+
 			<br><br>
 			<table class="table table-striped table-hover">
 				<thead>

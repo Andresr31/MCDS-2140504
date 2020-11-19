@@ -6,6 +6,8 @@ use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Http\Request;
 
+use App\Exports\UserExport;
+
 class UserController extends Controller
 {
     public function __construct()
@@ -129,5 +131,12 @@ class UserController extends Controller
         $users = User::all();
         $pdf = \PDF::loadView('users.pdf', compact('users'));
         return $pdf->download('allusers.pdf');
+    }
+
+    ////////// Exportar EXCEL
+
+    public function excel() {
+        
+        return \EXCEL::download(new UserExport,'allusers.xlsx');
     }
 }

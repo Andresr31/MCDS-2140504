@@ -58,3 +58,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Exports PDF
 Route::get('generate/pdf/users', 'UserController@pdf');
+
+// Exports EXCEL
+Route::get('generate/excel/users', 'UserController@excel');
+
