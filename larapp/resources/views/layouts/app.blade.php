@@ -85,6 +85,16 @@
                }
                reader.readAsDataURL(this.files[0]);
             });
+
+            /* -- */
+            $('.btn-excel').click(function(event){
+                $('#file').click();
+            });
+            /* -- */
+            $('#file').change(function(event){
+                $(this).parent().submit();
+            });
+
         });
     </script>
 </body>

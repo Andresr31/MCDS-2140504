@@ -62,3 +62,5 @@ Route::get('generate/pdf/users', 'UserController@pdf');
 // Exports EXCEL
 Route::get('generate/excel/users', 'UserController@excel');
 
+// Import EXCEL
+Route::post('import/excel/users', 'UserController@importExcel');

@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Exports\UserExport;
+use App\Imports\UserImport;
 
 class UserController extends Controller
 {
@@ -138,5 +139,14 @@ class UserController extends Controller
     public function excel() {
         
         return \EXCEL::download(new UserExport,'allusers.xlsx');
+    }
+
+    ////////// Importar EXCEL
+
+    public function importExcel(Request $request) {
+
+        $file = $request->file('file');
+        \EXCEL::import(new UserImport, $file);
+        return redirect('users')->with('message', 'Usuarios importados con Exito!');
     }
 }
