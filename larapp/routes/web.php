@@ -48,7 +48,7 @@ Auth::routes();
 Route::resources([
     'users'         => 'UserController',
     'categories'  => 'CategoryController',
-    //'games'       => 'GameController',
+    'games'       => 'GameController',
 ]);
 
 // Middleware
