@@ -4,11 +4,15 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-10 offset-md-1">
-			<h1> <i class="fa fa-users"></i> Lista de Usuarios</h1>
+			<h1> <i class="fa fa-users"></i> Lista de Usuarios </h1>
 			<hr>
-			<a href="{{ route('users.create') }}" class="btn btn-success">
+			<a href="{{ url('users/create') }}" class="btn btn-success"> 
 				<i class="fa fa-plus"></i>
-				Adicionar Usuario
+				Adicionar Usuario 
+			</a>
+			<a href="{{ url('generate/pdf/users') }}" class="btn btn-larapp"> 
+				<i class="fa fa-file-pdf"></i>
+				Exportar PDF 
 			</a>
 			<br><br>
 			<table class="table table-striped table-hover">
@@ -40,11 +44,8 @@
 						</tr>
 					@endforeach
 				</tbody>
-            </table>
-            <div class="ml-auto mr-auto">
-                {{$users->links()}}
-            </div>
-
+			</table>
+			{{ $users->links() }}
 		</div>
 	</div>
 @endsection

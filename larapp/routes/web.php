@@ -55,3 +55,6 @@ Route::resources([
 Route::get('locale/{locale}', 'LocaleController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Exports PDF
+Route::get('generate/pdf/users', 'UserController@pdf');
