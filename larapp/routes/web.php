@@ -56,6 +56,7 @@ Route::group(['middleware' => 'admin'], function() {
 
 
 
+////////////////////// USERS /////////////////////////////////
 // Export PDF
 Route::get('generate/pdf/users', 'UserController@pdf');
 // Export Excel
@@ -64,6 +65,27 @@ Route::get('generate/excel/users', 'UserController@excel');
 Route::post('import/excel/users', 'UserController@import');
 // Search Scope
 Route::post('users/search', 'UserController@search');
+
+////////////////////// CATEGORIES /////////////////////////////////
+// Export PDF
+Route::get('generate/pdf/categories', 'CategoryController@pdf');
+// Export Excel
+Route::get('generate/excel/categories', 'CategoryController@excel');
+// Import Excel
+Route::post('import/excel/categories', 'CategoryController@import');
+// Search Scope
+Route::post('categories/search', 'CategoryController@search');
+
+
+////////////////////// GAMES /////////////////////////////////
+// Export PDF
+Route::get('generate/pdf/games', 'GameController@pdf');
+// Export Excel
+Route::get('generate/excel/games', 'GameController@excel');
+// Import Excel
+Route::post('import/excel/games', 'GameController@import');
+// Search Scope
+Route::post('games/search', 'GameController@search');
 
 
 

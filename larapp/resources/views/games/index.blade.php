@@ -10,7 +10,29 @@
                 <i class="fa fa-plus"></i>
                 Adicionar Juego
             </a>
-            <br><br>
+            <form action="{{ url('import/excel/games') }}" method="POST" enctype="multipart/form-data" class="d-inline">
+				@csrf
+				<input type="file" class="d-none" id="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+				<button type="button" class="btn btn-success btn-excel">
+					<i class="fa fa-file-excel"></i> 
+					Importar Juegos
+				</button>
+			</form>
+			<a href="{{ url('generate/pdf/games') }}" class="btn btn-larapp"> 
+				<i class="fa fa-file-pdf"></i>
+				Exportar PDF 
+			</a>
+			<a href="{{ url('generate/excel/games') }}" class="btn btn-larapp"> 
+				<i class="fa fa-file-excel"></i>
+				Exportar Excel 
+			</a>
+			<input type="hidden" id="tmodel" value="games">
+            <input type="text" id="qsearch" name="qsearch" class="form-search" autocomplete="off" placeholder="Buscar">
+            <br>
+            <div class="loader d-none text-center mt-5">
+                <img src="{{ asset('imgs/loader.gif')}}" width="100px">
+            </div>
+			<br><br>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
