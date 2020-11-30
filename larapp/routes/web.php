@@ -64,3 +64,6 @@ Route::get('generate/excel/users', 'UserController@excel');
 
 // Import EXCEL
 Route::post('import/excel/users', 'UserController@importExcel');
+
+// Search Scope
+Route::post('users/search', 'UserController@search');

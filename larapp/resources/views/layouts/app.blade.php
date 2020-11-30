@@ -39,17 +39,27 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/sweetalert2@9.js') }}"></script>
-
     <script>
         $(document).ready(function() {
-              /* - - -*/
-              @if (session('message'))
+            /* - - -*/
+            @if (session('message'))
                 Swal.fire({
                     title: 'Felicitaciones',
                     text: '{{ session('message') }}',
                     icon: 'success',
                     confirmButtonColor: '#1e5f74',
                     confirmButtonText: 'Aceptar'
+                });
+            @endif
+            /* - - -*/
+            @if (session('error'))
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'error',
+                  title: 'Acceso Denegado',
+                  text: '{{ session('error') }}',
+                  showConfirmButton: false,
+                  timer: 2500
                 });
             @endif
             /* - - -*/
@@ -69,7 +79,7 @@
                     }
                 });
             });
-
+            /* - - -*/
             $('#photo').change(function(event) {
                let reader = new FileReader();
                reader.onload = function(event) {
@@ -77,24 +87,33 @@
                }
                reader.readAsDataURL(this.files[0]);
             });
-
-            $('#image').change(function(event) {
-               let reader = new FileReader();
-               reader.onload = function(event) {
-                    $('#previewImage').attr('src', event.target.result);
-               }
-               reader.readAsDataURL(this.files[0]);
-            });
-
-            /* -- */
-            $('.btn-excel').click(function(event){
+            /* - - -*/
+            $('.btn-excel').click(function(event) {
                 $('#file').click();
             });
-            /* -- */
-            $('#file').change(function(event){
+            $('#file').change(function(event) {
                 $(this).parent().submit();
             });
-
+            /* - - -*/
+            $('body').on('keyup','#qsearch', function(event) {
+                event.preventDefault();
+                $q = $(this).val();
+                $t = $('input[name=_token]').val();
+                $m = $('#tmodel').val();
+                //if($(this).val().length > 0) {
+                    $('.loader').removeClass('d-none');
+                    $('.table').hide();
+                    $sto = setTimeout(function(){
+                        clearTimeout($sto);
+                        $.post($m+'/search', {q: $q, _token: $t}, function(data) {
+                            $('.loader').addClass('d-none');
+                            $('#content').html(data);
+                            $('.table').fadeIn('slow');
+                        });
+                    }, 2000);
+                //}
+            });
+            /* - - -*/
         });
     </script>
 </body>
