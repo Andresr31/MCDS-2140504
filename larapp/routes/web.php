@@ -44,26 +44,30 @@ Route::get('challenge', function () {
 
 Auth::routes();
 
-// Resources
-Route::resources([
-    'users'         => 'UserController',
-    'categories'  => 'CategoryController',
-    'games'       => 'GameController',
-]);
+// Group Middleware
+Route::group(['middleware' => 'admin'], function() {
+    // Resources
+    Route::resources([
+        'users'       => 'UserController',
+        'categories'  => 'CategoryController',
+        'games'       => 'GameController',
+    ]);
+});
+
+
+
+// Export PDF
+Route::get('generate/pdf/users', 'UserController@pdf');
+// Export Excel
+Route::get('generate/excel/users', 'UserController@excel');
+// Import Excel
+Route::post('import/excel/users', 'UserController@import');
+// Search Scope
+Route::post('users/search', 'UserController@search');
+
+
 
 // Middleware
 Route::get('locale/{locale}', 'LocaleController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-// Exports PDF
-Route::get('generate/pdf/users', 'UserController@pdf');
-
-// Exports EXCEL
-Route::get('generate/excel/users', 'UserController@excel');
-
-// Import EXCEL
-Route::post('import/excel/users', 'UserController@importExcel');
-
-// Search Scope
-Route::post('users/search', 'UserController@search');
