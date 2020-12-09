@@ -13,9 +13,13 @@ use \Carbon\Carbon;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@welcome');
+
+// Dashboard Customer
+Route::put('customer/{id}', 'UserController@customerupd');
+// Dashboard Editor
+Route::get('editor/info', 'UserController@editorinfo');
+Route::get('editor/games', 'GameController@editorgames');
 
 /*Route::get('helloworld', function () {
     return "<h1>Hello World</h1>";
@@ -54,40 +58,22 @@ Route::group(['middleware' => 'admin'], function() {
     ]);
 });
 
-
-
-////////////////////// USERS /////////////////////////////////
 // Export PDF
 Route::get('generate/pdf/users', 'UserController@pdf');
-// Export Excel
-Route::get('generate/excel/users', 'UserController@excel');
-// Import Excel
-Route::post('import/excel/users', 'UserController@import');
-// Search Scope
-Route::post('users/search', 'UserController@search');
-
-////////////////////// CATEGORIES /////////////////////////////////
-// Export PDF
+Route::get('generate/pdf/games', 'GameController@pdf');
 Route::get('generate/pdf/categories', 'CategoryController@pdf');
 // Export Excel
+Route::get('generate/excel/users', 'UserController@excel');
+Route::get('generate/excel/games', 'GameController@excel');
 Route::get('generate/excel/categories', 'CategoryController@excel');
 // Import Excel
+Route::post('import/excel/users', 'UserController@import');
+Route::post('import/excel/games', 'GameController@import');
 Route::post('import/excel/categories', 'CategoryController@import');
 // Search Scope
+Route::post('users/search', 'UserController@search');
 Route::post('categories/search', 'CategoryController@search');
-
-
-////////////////////// GAMES /////////////////////////////////
-// Export PDF
-Route::get('generate/pdf/games', 'GameController@pdf');
-// Export Excel
-Route::get('generate/excel/games', 'GameController@excel');
-// Import Excel
-Route::post('import/excel/games', 'GameController@import');
-// Search Scope
 Route::post('games/search', 'GameController@search');
-
-
 
 // Middleware
 Route::get('locale/{locale}', 'LocaleController@index');

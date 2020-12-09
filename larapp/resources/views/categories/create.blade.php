@@ -1,90 +1,83 @@
 @extends('layouts.app')
 
-@section('title', 'Crear Categoria')
+@section('title', 'Crear Categoría')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h1>
-                <i class="fa fa-plus"></i>
-                Adicionar Categoria
-            </h1>
-            <hr>
-
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<h1>
+				<i class="fa fa-plus"></i> 
+				Adicionar Categoría
+			</h1>
+			<hr>
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
-                      <a href="{{ url('home') }}">
-                          <i class="fa fa-clipboard-list"></i>  
-                          Escritorio
-                      </a>
-                  </li>
-                  <li class="breadcrumb-item">
-                      <a href="{{ route('categories.index') }}">
-                          <i class="fa fa-dice-d20"></i>  
-                           Módulo Categorias
-                      </a>
-                  </li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                      <i class="fa fa-plus"></i> 
-                      Adicionar Categoria
-                  </li>
-                </ol>
-              </nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url('home') }}">
+                        <i class="fa fa-clipboard-list"></i>  
+                        Escritorio
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('categories.index') }}">
+                        <i class="fas fa-list-alt"></i> 
+                         Módulo Categorías
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <i class="fa fa-plus"></i> 
+                    Adicionar Categoría
+                </li>
+              </ol>
+            </nav>
 
-            <form method="POST" action="{{ route('categories.store') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                        name="name" value="{{ old('name') }}" placeholder="Nombre"
-                        autofocus>
+			<form method="POST" action="{{ route('categories.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nombre" autofocus>
 
-                    @error('name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
 
-                <div class="form-group">
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" placeholder="Descripción" rows="3">{{ old('description') }}</textarea>
+                        <div class="form-group">
+                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" cols="30" rows="4" placeholder="Descripción">{{ old('description') }}</textarea>
 
-                    @error('description')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
+                                @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
 
-                <div class="form-group">
-                    <div class="text-center my-3">
-                        <img src="{{ asset('imgs/no-image.png') }}" class="img-thumbnail" id="previewImage" width="120px">
-                    </div>
-                    <div class="custom-file">
-                        
-                        <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="image"
-                            name="image" accept="image/*">
-                        <label class="custom-file-label" for="customFile">
-                            <i class="fa fa-upload"></i>
-                            Imagen
-                        </label>
-                        @error('image')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+                        <div class="form-group">
+                                <div class="text-center my-3">
+                                    <img src="{{ asset('imgs/no-category.png') }}" class="img-thumbnail" id="preview" width="120px">
+                                </div>
+                                <div class="custom-file">
+                                   <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="photo" name="image" accept="image/*">
+                                   <label class="custom-file-label" for="customFile"> 
+                                   	 <i class="fa fa-upload"></i> 
+                                   	 Imagen
+                                   </label>
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>    
+                        </div>
 
-                    
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-larapp btn-block text-uppercase">
-                        Guardar
-                        <i class="ml-2 fa fa-save"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
+                        <div class="form-group">
+                                <button type="submit" class="btn btn-larapp btn-block text-uppercase">
+                                    Adicionar
+                                    <i class="fa fa-save"></i> 
+                                </button>
+                        </div>
+                    </form>
+		</div>
+	</div>
 @endsection

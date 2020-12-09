@@ -26,26 +26,32 @@ class GameRequest extends FormRequest
         if ($this->method() == 'PUT') {
             // Edit Form
             return [
-                'name' => 'required',
+                'name'        => 'required|unique:games,name,'.$this->id,
                 'description' => 'required',
-                'image' => 'max:1000',
-                'user_id' => 'required',
+                'image'       => 'max:1000',
+                'user_id'     => 'required',
                 'category_id' => 'required',
-                'slider' => 'required',
-                'price' => 'required|numeric|min:1|max:99',
-
+                'slider'      => 'required',
+                'price'       => 'required|numeric|min:1|max:99',
             ];
         } else {
             // Create Form
             return [
-                'name' => 'required',
+                'name'        => 'required|unique:games',
                 'description' => 'required',
-                'image' => 'required|image|max:1000',
-                'user_id' => 'required',
+                'image'       => 'required|image|max:1000',
+                'user_id'     => 'required',
                 'category_id' => 'required',
-                'slider' => 'required',
-                'price' => 'required|numeric|min:1|max:99',
+                'slider'      => 'required',
+                'price'       => 'required|numeric|min:1|max:99',
             ];
         }
+    }
+
+    public function messages() {
+        return [
+            'user_id.required'     => 'El campo "Usuario" es obligatorio.',
+            'category_id.required'  => 'El campo "Categoría" es obligatorio.'
+        ];
     }
 }

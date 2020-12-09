@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Exports\GameExport;
 use App\Game;
-use App\Http\Requests\GameRequest;
-use App\Imports\GameImport;
 use App\User;
+use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\GameRequest;
+
+use App\Exports\GameExport;
+use App\Imports\GameImport;
 
 class GameController extends Controller
 {
-
-    public function __construct()
+    
+    public function __construct() 
     {
         $this->middleware('auth');
     }
@@ -59,9 +60,7 @@ class GameController extends Controller
             $game->image = 'imgs/'.$file;
         }
         $game->user_id      = $request->user_id;
-       
         $game->category_id  = $request->category_id;
-
         if($game->slider == 2) {
             $game->slider = 0;
         } else {
@@ -71,24 +70,24 @@ class GameController extends Controller
 
         if($game->save()) {
             return redirect('games')->with('message', 'El Juego: '.$game->name.' fue Adicionado con Exito!');
-        }
-    } 
+        } 
+    }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
     public function show(Game $game)
     {
-        return view('games.show')->with('game',$game); 
+        return view('games.show')->with('game', $game);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
     public function edit(Game $game)
@@ -104,7 +103,7 @@ class GameController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
     public function update(GameRequest $request, Game $game)
@@ -131,11 +130,10 @@ class GameController extends Controller
         } 
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
     public function destroy(Game $game)
@@ -145,33 +143,26 @@ class GameController extends Controller
         } 
     }
 
-    ////////// Exportar PDF
-
     public function pdf() {
         $games = Game::all();
         $pdf = \PDF::loadView('games.pdf', compact('games'));
         return $pdf->download('allgames.pdf');
     }
 
-    ////////// Exportar EXCEL
-
     public function excel() {
-        
-        return \EXCEL::download(new GameExport,'allgames.xlsx');
+        return \Excel::download(new GameExport, 'allgames.xlsx');
     }
 
-    ////////// Importar EXCEL
-
-    public function importExcel(Request $request) {
-
+    public function import(Request $request) {
         $file = $request->file('file');
-        \EXCEL::import(new GameImport, $file);
-        return redirect('games')->with('message', 'Juegos importadas con Exito!');
+        \Excel::import(new GameImport, $file);
+        return redirect()->back()->with('message', 'Juegos importados con exito!');
     }
-
 
     public function search(Request $request) {
         $games = Game::names($request->q)->orderBy('id','ASC')->paginate(10);
         return view('games.search')->with('games', $games);
     }
+
+    
 }

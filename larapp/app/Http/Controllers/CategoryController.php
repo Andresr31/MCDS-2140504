@@ -148,4 +148,5 @@ class CategoryController extends Controller
         $categories = Category::names($request->q)->orderBy('id','ASC')->paginate(10);
         return view('categories.search')->with('categories', $categories);
     }
+    
 }
