@@ -18,10 +18,17 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="{{ route('games.index') }}">
-                         <i class="fas fa-gamepad"></i>  
-                         Módulo Juegos
-                    </a>
+                    @if (Auth::user()->role == 'Admin')
+                        <a href="{{ route('games.index') }}">
+                            <i class="fas fa-gamepad"></i> 
+                            Módulo Juegos
+                        </a>
+                    @else
+                        <a href="{{ route('games.editor') }}">
+                            <i class="fas fa-gamepad"></i> 
+                            Módulo Juegos
+                        </a>
+                    @endif
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                     <i class="fa fa-search"></i> 

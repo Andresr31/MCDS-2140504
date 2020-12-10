@@ -10,6 +10,7 @@ use App\Http\Requests\GameRequest;
 
 use App\Exports\GameExport;
 use App\Imports\GameImport;
+use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
 {
@@ -69,7 +70,12 @@ class GameController extends Controller
         $game->price      = $request->price;
 
         if($game->save()) {
-            return redirect('games')->with('message', 'El Juego: '.$game->name.' fue Adicionado con Exito!');
+            if(Auth::user()->role == 'Admin'){
+                return redirect('games')->with('message', 'El Juego: '.$game->name.' fue Adicionado con Exito!');
+            }else{
+                return redirect()->route('games.editor')->with('message', 'El Juego: '.$game->name.' fue Adicionado con Exito!');
+            }
+            
         } 
     }
 
@@ -126,7 +132,12 @@ class GameController extends Controller
         $game->price      = $request->price;
 
         if($game->save()) {
-            return redirect('games')->with('message', 'El Juego: '.$game->name.' fue Modificado con Exito!');
+            if(Auth::user()->role == 'Admin'){
+                return redirect('games')->with('message', 'El Juego: '.$game->name.' fue Modificado con Exito!');
+            }else{
+                return redirect()->route('games.editor')->with('message', 'El Juego: '.$game->name.' fue Modificado con Exito!');
+            }
+            
         } 
     }
 
@@ -139,7 +150,12 @@ class GameController extends Controller
     public function destroy(Game $game)
     {
         if($game->delete()) {
-            return redirect('games')->with('message', 'El Juego: '.$game->name.' fue Eliminado con Exito!');
+            if(Auth::user()->role == 'Admin'){
+                return redirect('games')->with('message', 'El Juego: '.$game->name.' fue Eliminado con Exito!');
+            }else{
+                return redirect()->route('games.editor')->with('message', 'El Juego: '.$game->name.' fue Eliminado con Exito!');
+            }
+            
         } 
     }
 
@@ -161,6 +177,18 @@ class GameController extends Controller
 
     public function search(Request $request) {
         $games = Game::names($request->q)->orderBy('id','ASC')->paginate(10);
+        return view('games.search')->with('games', $games);
+    }
+
+
+    //////////////// EDITOR  ///////////////////
+    public function indexGamesEditor(){
+        $games = Game::where('user_id',Auth::user()->id)->paginate(10);
+        return view('games.index')->with('games', $games);
+    }
+
+    public function searchEditor(Request $request) {
+        $games = Game::names($request->q)->where('user_id',Auth::user()->id)->orderBy('id','ASC')->paginate(10);
         return view('games.search')->with('games', $games);
     }
 

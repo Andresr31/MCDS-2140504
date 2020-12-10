@@ -54,6 +54,11 @@ Route::group(['middleware' => 'admin'], function() {
     Route::resources([
         'users'       => 'UserController',
         'categories'  => 'CategoryController',
+    ]);
+});
+Route::group(['middleware' => 'editor'], function() {
+    // Resources
+    Route::resources([
         'games'       => 'GameController',
     ]);
 });
@@ -82,3 +87,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Filter
 Route::post('category/filter', 'HomeController@filter');
+
+// 
+Route::get('editor/games', 'GameController@indexGamesEditor')->name('games.editor');
+Route::post('editor/games/search', 'GameController@searchEditor');

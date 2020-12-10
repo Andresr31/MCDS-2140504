@@ -19,10 +19,18 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="{{ route('games.index') }}">
-                        <i class="fas fa-gamepad"></i> 
-                         Módulo Juegos
-                    </a>
+                    @if (Auth::user()->role == 'Admin')
+                        <a href="{{ route('games.index') }}">
+                            <i class="fas fa-gamepad"></i> 
+                            Módulo Juegos
+                        </a>
+                    @else
+                        <a href="{{ route('games.editor') }}">
+                            <i class="fas fa-gamepad"></i> 
+                            Módulo Juegos
+                        </a>
+                    @endif
+                    
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                     <i class="fa fa-pen"></i> 
@@ -72,21 +80,25 @@
                                 @enderror
                                 </div>    
                         </div>
+                            @if (Auth::user()->role == 'Admin')
+                                <div class="form-group">
+                                    <select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
+                                        <option value="">Seleccione Usuario...</option>
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}" @if ($user->id == old('user_id', $game->user_id)) selected @endif>{{ $user->fullname }}</option>
+                                        @endforeach
+                                    </select>
 
-                           <div class="form-group">
-                                <select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
-                                    <option value="">Seleccione Usuario...</option>
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->id }}" @if ($user->id == old('user_id', $game->user_id)) selected @endif>{{ $user->fullname }}</option>
-                                    @endforeach
-                                </select>
-
-                                @error('user_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                        </div>
+                                    @error('user_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            @else
+                                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                            @endif
+                           
 
                         <div class="form-group">
                                 <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
