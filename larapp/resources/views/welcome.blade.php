@@ -88,3 +88,14 @@
         </div>
     </div>
 @endsection
+
+
+{{-------- PROYECTO FINALIZADO VERSIÓN 1.0 -------}}
+{{------------------------------------------------}}
+{{-- AUTOR:  Carlos Andrés Rojas Parra          --}}
+{{-- TUTOR:  Oscar Fernando Aristizabal Cardona --}}
+{{------------------------------------------------}}
+{{-- Especialización Tecnológica en Metodologias--}}
+{{-- de Calidad para el Desarrollo de Software  --}}
+{{------------------------------------------------}}
+{{-- SENA 2020-12-10 --}}
