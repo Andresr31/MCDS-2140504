@@ -31,12 +31,12 @@
               </ol>
             </nav>
 
-			<form method="POST" action="{{ url('categories/'.$cat->id) }}" enctype="multipart/form-data">
+			<form method="POST" action="{{ url('categories/'.$category->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <input type="hidden" name="id" value="{{ $cat->id }}">
+                        <input type="hidden" name="id" value="{{ $category->id }}">
                         <div class="form-group">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $cat->name) }}" placeholder="Nombre" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $category->name) }}" placeholder="Nombre" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="form-group">
-                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" cols="30" rows="4" placeholder="Descripción">{{ old('description', $cat->description) }}</textarea>
+                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" cols="30" rows="4" placeholder="Descripción">{{ old('description', $category->description) }}</textarea>
 
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
 
                         <div class="form-group">
                                 <div class="text-center my-3">
-                                    <img src="{{ asset($cat->image) }}" class="img-thumbnail" id="preview" width="120px">
+                                    <img src="{{ asset($category->image) }}" class="img-thumbnail" id="preview" width="120px">
                                 </div>
                                 <div class="custom-file">
                                    <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="photo" name="image" accept="image/*">

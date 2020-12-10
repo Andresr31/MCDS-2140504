@@ -32,16 +32,16 @@
 			<table class="table table-striped table-hover">
 				<tr>
 					<td colspan="2" class="text-center">
-						<img src="{{ asset($cat->image) }}" class="img-thumbnail" width="180px">
+						<img src="{{ asset($category->image) }}" class="img-thumbnail" width="180px">
 					</td>
 				</tr>
 				<tr>
 					<th>Nombre:</th>
-					<td>{{ $cat->name }}</td>
+					<td>{{ $category->name }}</td>
 				</tr>
 				<tr>
 					<th>Descripción:</th>
-					<td>{{ $cat->description }}</td>
+					<td>{{ $category->description }}</td>
 				</tr>
 			</table>
 		</div>
