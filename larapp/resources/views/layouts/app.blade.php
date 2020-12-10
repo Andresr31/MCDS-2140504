@@ -135,6 +135,29 @@
                 //}
             });
             /* - - -*/
+            $('#filter').change(function(event) {
+                event.preventDefault();
+                option = $(this).val();
+                $t = $('meta[name="csrf-token"]').attr('content')
+                console.log($t);
+                // if(option >= 0){
+                    $('.loader').removeClass('d-none');
+                    $('#list-filter').hide();
+                    $sto = setTimeout(function(){
+                        clearTimeout($sto);
+                        
+                        $.post('category/filter', {category_id: option, _token: $t}, function(data) {
+                            $('.loader').addClass('d-none');
+                            $('#list-filter').html(data);
+                            $('#list-filter').fadeIn('slow');
+                        });
+                    }, 1000);
+                // }else{
+                //     $('.loader').addClass('d-none');
+                //     $('#list-filter').fadeIn('slow');
+                // }
+                
+            });
         });
     </script>
 </body>

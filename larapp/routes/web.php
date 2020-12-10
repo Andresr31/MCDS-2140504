@@ -79,3 +79,6 @@ Route::post('games/search', 'GameController@search');
 Route::get('locale/{locale}', 'LocaleController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Filter
+Route::post('category/filter', 'HomeController@filter');

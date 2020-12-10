@@ -27,8 +27,9 @@
     <div class="row">
         <div class="col-md-4 offset-md-4">
             <div class="form-group">
-                <select name="" id="" class="form-control">
-                    <option value="">Seleccione...</option>
+                <select name="filter" id="filter" class="form-control">
+                    <option value="-2">Seleccione...</option>
+                    <option value="-1">Todos</option>
                     @foreach ($cats as $cat)
                         <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                     @endforeach
@@ -36,13 +37,18 @@
             </div>
         </div>
     </div>
+    <br>
+    <div class="loader d-none text-center mt-5">
+        <img src="{{ asset('imgs/loader.gif')}}" width="100px">
+    </div>
+    <br><br>
     {{--  --}}
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" id="list-filter">
         <div class="col-md-12">
             @foreach ($cats as $cat)
                 <h3 class="mt-5"> <img src="{{ asset($cat->image) }}" width="80px"> </h3>
                 <hr>
-                <div class="row">
+                <div class="row" id="list-games">
                 @foreach ($games as $game)
                     @if ($game->category_id == $cat->id)
                     <div class="col-md-4 mb-4">
